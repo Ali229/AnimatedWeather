@@ -11,18 +11,22 @@ Module.register("MMM-AnimatedWeather", {
 		theme: "nothing"
 	},
 
-	getStyles: function() {
-		return [ "MMM-AnimatedWeather.css" ]
+	getStyles: function () {
+		return ["MMM-AnimatedWeather.css"]
 	},
 
 	getDom: function () {
 		var wrapper = document.createElement("div");
 		wrapper.className = "wrapper";
 
-		if(this.config.theme == "rain") {
+		if (this.config.theme == "rain") {
 			var rain = document.createElement("div");
 			rain.className = "rain";
 			wrapper.appendChild(rain);
+		} else if (this.config.theme == "thunderstorm") {
+			var lightning = document.createElement("div");
+			lightning.className = "rain lightning";
+			wrapper.appendChild(lightning);
 		}
 
 		return wrapper;
@@ -30,8 +34,11 @@ Module.register("MMM-AnimatedWeather", {
 
 	notificationReceived: function (notification, payload, sender) {
 		if (notification == "WEATHER_WALLPAPER") {
+			payload = "Thunderstorm";
 			if (payload == "Rain") {
 				this.config.theme = "rain";
+			} else if (payload == "Thunderstorm") {
+				this.config.theme = "thunderstorm";
 			} else if (payload == "Snow") {
 				this.config.theme = "snow";
 			} else {
