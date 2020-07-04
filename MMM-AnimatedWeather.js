@@ -5,32 +5,39 @@
  * MIT Licensed.
  */
 
-Module.register("MMM-AnimatedWeather",{
+Module.register("MMM-AnimatedWeather", {
 
 	defaults: {
-		theme : "nothing"
+		theme: "nothing"
 	},
 
-	getDom: function() {
-		var wrapper = document.createElement("div")
-		wrapper.className = "wrapper"
-		
+	getStyles: function() {
+		return [ "MMM-AnimatedWeather.css" ]
+	},
+
+	getDom: function () {
+		var wrapper = document.createElement("div");
+		wrapper.className = "wrapper";
+
+		if(this.config.theme == "rain") {
+			var rain = document.createElement("div");
+			rain.className = "rain";
+			wrapper.appendChild(rain);
+		}
+
 		return wrapper;
 	},
 
-	notificationReceived: function(notification, payload, sender) {
+	notificationReceived: function (notification, payload, sender) {
 		if (notification == "WEATHER_WALLPAPER") {
 			if (payload == "Rain") {
 				this.config.theme = "rain";
-				this.updateDom();
+			} else if (payload == "Snow") {
+				this.config.theme = "snow";
+			} else {
+				this.config.theme = "nothing";
 			}
-			else if (payload == "Snow") {
-				this.config.theme = "winter";
-				this.updateDom();
-			}
-			else {
-				this.updateDom();
-			}
+			this.updateDom();
 		}
 	}
 });
