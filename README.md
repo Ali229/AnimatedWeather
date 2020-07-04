@@ -1,6 +1,6 @@
 # MMM-AnimatedWeather
 
-The module adds animated weather to the Magic Mirror set according to the defualt current weather module data.
+The module adds animated weather to the Magic Mirror set according to the default current weather module data.
 
 ## Installation
 
