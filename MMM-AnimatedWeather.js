@@ -17,6 +17,7 @@ Module.register("MMM-AnimatedWeather", {
 
     start: function () {
         self = this;
+		this.testWeather();
     },
 
     getDom: function () {
@@ -29,7 +30,7 @@ Module.register("MMM-AnimatedWeather", {
             wrapper.appendChild(rain);
         } else if (this.config.theme == "thunderstorm") {
             var lightning = document.createElement("div");
-            lightning.className = "rain lightning";
+            lightning.className = "rain lightning2";
             wrapper.appendChild(lightning);
         }
         return wrapper;
@@ -47,7 +48,6 @@ Module.register("MMM-AnimatedWeather", {
                 this.config.theme = "nothing";
             }
             this.updateDom();
-            this.testWeather();
         }
     },
 
