@@ -16,7 +16,6 @@ Module.register("MMM-AnimatedWeather", {
     },
 
     start: function () {
-        self = this;
 		this.testWeather();
     },
 
@@ -30,7 +29,7 @@ Module.register("MMM-AnimatedWeather", {
             wrapper.appendChild(rain);
         } else if (this.config.theme == "thunderstorm") {
             var lightning = document.createElement("div");
-            lightning.className = "rain lightning2";
+            lightning.className = "rain lightning";
             wrapper.appendChild(lightning);
         }
         return wrapper;
@@ -47,13 +46,12 @@ Module.register("MMM-AnimatedWeather", {
             } else {
                 this.config.theme = "nothing";
             }
-            this.updateDom();
+            // this.updateDom();
         }
     },
 
     testWeather: function () {
-        setTimeout(function () {
-            self.sendNotification("WEATHER_WALLPAPER", "Thunderstorm");
-        }, 8000);
+		this.config.theme = "thunderstorm";
+		this.updateDom();
     }
 });
